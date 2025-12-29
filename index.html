@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Polytechnic College Finder</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary: #4a6fa5;
+            --primary-light: #6b8cbc;
+            --primary-dark: #3a5680;
+            --secondary: #166088;
+            --accent: #ff7e30;
+            --accent-light: #ff9d5c;
+            --light: #f8f9fa;
+            --light-gray: #e9ecef;
+            --medium-gray: #adb5bd;
+            --dark: #343a40;
+            --success: #28a745;
+            --warning: #ffc107;
+            --danger: #dc3545;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --box-shadow-hover: 0 6px 16px rgba(0, 0, 0, 0.12);
+            --transition: all 0.3s ease;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: #f5f7fa;
+            padding-bottom: 40px;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            text-align: center;
+            color: var(--primary-dark);
+            margin-top: 0.5rem;
+        }
+        
+        h2 {
+            font-size: 1.8rem;
+            border-bottom: 2px solid var(--primary-light);
+            padding-bottom: 0.5rem;
+            margin-top: 2rem;
+        }
+        
+        h3 {
+            font-size: 1.4rem;
+            color: var(--primary);
+        }
+        
+        p {
+            margin-bottom: 1rem;
+        }
+        
+        a {
+            color: var(--secondary);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        a:hover {
+            color: var(--accent);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 2rem 0;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+        
+        .header-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .logo {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo-icon {
+            font-size: 2.5rem;
+        }
+        
+        .tagline {
+            font-size: 1.1rem;
+            font-weight: 300;
+            max-width: 600px;
+            opacity: 0.9;
+        }
+        
+        /* Form Styles */
+        .input-section {
+            background-color: white;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            margin-bottom: 2.5rem;
+            transition: var(--transition);
+        }
+        
+        .input-section:hover {
+            box-shadow: var(--box-shadow-hover);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--primary-dark);
+            font-size: 1.1rem;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 2px solid var(--light-gray);
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            font-family: 'Roboto', sans-serif;
+            transition: var(--transition);
+        }
+        
+        .form-control:focus {
+            border-color: var(--primary-light);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(74, 111, 165, 0.2);
+        }
+        
+        .form-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .form-col {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--accent);
+            color: white;
+            padding: 0.9rem 2rem;
+            border: none;
+            border-radius: var(--border-radius);
+            font-size: 1.1rem;
+            font-weight: 500;
+            font-family: 'Poppins', sans-serif;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 4px 8px rgba(255, 126, 48, 0.3);
+        }
+        
+        .btn:hover {
+            background-color: var(--accent-light);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(255, 126, 48, 0.4);
+        }
+        
+        .btn:active {
+            transform: translateY(0);
+        }
+        
+        .btn-block {
+            display: block;
+            width: 100%;
+            text-align: center;
+        }
+        
+        .text-center {
+            text-align: center;
+        }
+        
+        /* Results Section */
+        .results-section {
+            margin-top: 2rem;
+        }
+        
+        .results-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .result-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+            border-top: 4px solid var(--primary);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .result-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--box-shadow-hover);
+        }
+        
+        .card-header {
+            margin-bottom: 1rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 1px solid var(--light-gray);
+        }
+        
+        .college-name {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--primary-dark);
+            margin-bottom: 0.3rem;
+        }
+        
+        .branch-name {
+            font-size: 1.1rem;
+            color: var(--secondary);
+            font-weight: 500;
+        }
+        
+        .card-details {
+            margin-top: auto;
+        }
+        
+        .detail-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.7rem;
+            padding-bottom: 0.7rem;
+            border-bottom: 1px dashed var(--light-gray);
+        }
+        
+        .detail-label {
+            font-weight: 500;
+            color: var(--dark);
+        }
+        
+        .detail-value {
+            font-weight: 600;
+            color: var(--primary);
+        }
+        
+        .category-badge {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-top: 0.5rem;
+        }
+        
+        .category-gen {
+            background-color: rgba(40, 167, 69, 0.15);
+            color: var(--success);
+        }
+        
+        .category-obc {
+            background-color: rgba(255, 193, 7, 0.15);
+            color: #d39e00;
+        }
+        
+        .category-sc {
+            background-color: rgba(0, 123, 255, 0.15);
+            color: #0062cc;
+        }
+        
+        .category-st {
+            background-color: rgba(220, 53, 69, 0.15);
+            color: var(--danger);
+        }
+        
+        .no-results {
+            text-align: center;
+            padding: 3rem;
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            margin-top: 1.5rem;
+        }
+        
+        .no-results-icon {
+            font-size: 3rem;
+            color: var(--medium-gray);
+            margin-bottom: 1rem;
+        }
+        
+        .no-results h3 {
+            color: var(--medium-gray);
+        }
+        
+        /* Info Section */
+        .info-section {
+            background-color: white;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            margin-top: 2.5rem;
+        }
+        
+        .info-box {
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--light-gray);
+        }
+        
+        .info-box:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        
+        .info-list {
+            list-style-type: none;
+            padding-left: 1rem;
+        }
+        
+        .info-list li {
+            margin-bottom: 0.5rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+        
+        .info-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--success);
+            font-weight: bold;
+        }
+        
+        .disclaimer {
+            background-color: rgba(255, 193, 7, 0.1);
+            border-left: 4px solid var(--warning);
+            padding: 1rem 1.5rem;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+            margin-top: 1.5rem;
+        }
+        
+        /* Loading Animation */
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .spinner {
+            border: 5px solid rgba(74, 111, 165, 0.2);
+            border-radius: 50%;
+            border-top: 5px solid var(--primary);
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--light-gray);
+            color: var(--medium-gray);
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+            
+            .form-row {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .form-col {
+                min-width: 100%;
+            }
+            
+            .results-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .input-section, .info-section {
+                padding: 1.5rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 15px;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .logo {
+                font-size: 1.8rem;
+            }
+            
+            .input-section, .info-section {
+                padding: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <h1 class="logo">
+                    <span class="logo-icon">🎓</span>
+                    Polytechnic College Finder
+                </h1>
+                <p class="tagline">Find the best Polytechnic colleges and branches based on your rank and category</p>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Input Section -->
+        <section class="input-section">
+            <h2>Find Your College</h2>
+            <p>Enter your rank and select your category to discover the best polytechnic colleges available for you.</p>
+            
+            <form id="collegeFinderForm">
+                <div class="form-row">
+                    <div class="form-col">
+                        <div class="form-group">
+                            <label for="rank" class="form-label">Your Rank</label>
+                            <input 
+                                type="number" 
+                                id="rank" 
+                                class="form-control" 
+                                placeholder="Enter your rank (e.g., 1500)"
+                                min="1"
+                                required
+                            >
+                            <small class="form-text">Enter your rank from the polytechnic entrance exam</small>
+                        </div>
+                    </div>
+                    
+                    <div class="form-col">
+                        <div class="form-group">
+                            <label for="category" class="form-label">Your Category</label>
+                            <select id="category" class="form-control" required>
+                                <option value="">Select Category</option>
+                                <option value="GEN">General (GEN)</option>
+                                <option value="OBC">Other Backward Class (OBC)</option>
+                                <option value="SC">Scheduled Caste (SC)</option>
+                                <option value="ST">Scheduled Tribe (ST)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center">
+                    <button type="submit" class="btn btn-block" id="findCollegesBtn">
+                        Find Colleges
+                    </button>
+                </div>
+            </form>
+            
+            <!-- Loading Animation -->
+            <div class="loading" id="loading">
+                <div class="spinner"></div>
+                <p>Searching for the best colleges...</p>
+            </div>
+        </section>
+
+        <!-- Results Section -->
+        <section class="results-section" id="resultsSection">
+            <h2>Recommended Colleges</h2>
+            <div id="resultsContainer" class="results-container">
+                <!-- Results will be displayed here dynamically -->
+                <div class="no-results" id="noResultsMessage">
+                    <div class="no-results-icon">🎓</div>
+                    <h3>No Results Yet</h3>
+                    <p>Please enter your rank and category to find suitable colleges.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Information Section -->
+        <section class="info-section">
+            <h2>About Polytechnic Courses</h2>
+            
+            <div class="info-box">
+                <h3>What is a Polytechnic Course?</h3>
+                <p>A Polytechnic course is a diploma-level technical education program that focuses on practical skills and applied knowledge in various engineering and technology fields. These courses typically last 2-3 years and prepare students for technical jobs in industries.</p>
+                
+                <ul class="info-list">
+                    <li>Focus on hands-on, practical training</li>
+                    <li>Shorter duration than degree programs (2-3 years)</li>
+                    <li>Industry-oriented curriculum</li>
+                    <li>Opportunities for direct employment after completion</li>
+                    <li>Can be a pathway to engineering degrees</li>
+                </ul>
+            </div>
+            
+            <div class="info-box">
+                <h3>How This Tool Helps You</h3>
+                <p>The Polytechnic College Finder simplifies your college search process by matching your entrance exam rank and category with available college seats. Our algorithm considers:</p>
+                
+                <ul class="info-list">
+                    <li>Your rank in the entrance examination</li>
+                    <li>Your reservation category (GEN, OBC, SC, ST)</li>
+                    <li>Previous year's cutoff trends</li>
+                    <li>College reputation and facilities</li>
+                    <li>Branch popularity and placement records</li>
+                </ul>
+            </div>
+            
+            <div class="disclaimer">
+                <h3>Important Disclaimer</h3>
+                <p><strong>Note:</strong> This tool provides estimated results based on previous year's data and trends. Final admission depends on official counselling procedures, seat availability, and actual cutoff ranks published by authorities. Always refer to official admission brochures and websites for the most accurate and updated information.</p>
+            </div>
+            
+            <div class="info-box">
+                <h3>Future Scope</h3>
+                <p>We plan to enhance this tool with additional features in the future:</p>
+                
+                <ul class="info-list">
+                    <li>College comparisons with detailed profiles</li>
+                    <li>Placement statistics and average packages</li>
+                    <li>College location and infrastructure details</li>
+                    <li>User reviews and ratings</li>
+                    <li>Personalized recommendations based on interests</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <p>© 2023 Polytechnic College Finder. This tool is for informational purposes only.</p>
+            <p>Data is based on previous year trends and sample data.</p>
+        </footer>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Sample data for polytechnic colleges
+        const collegeData = [
+            // General Category
+            { id: 1, collegeName: "Delhi Polytechnic Institute", branchName: "Computer Engineering", minRank: 1, maxRank: 500, category: "GEN" },
+            { id: 2, collegeName: "Delhi Polytechnic Institute", branchName: "Mechanical Engineering", minRank: 501, maxRank: 1000, category: "GEN" },
+            { id: 3, collegeName: "Mumbai Technical Institute", branchName: "Electrical Engineering", minRank: 1, maxRank: 400, category: "GEN" },
+            { id: 4, collegeName: "Mumbai Technical Institute", branchName: "Civil Engineering", minRank: 401, maxRank: 900, category: "GEN" },
+            { id: 5, collegeName: "Bangalore Polytechnic College", branchName: "Electronics & Communication", minRank: 1, maxRank: 600, category: "GEN" },
+            { id: 6, collegeName: "Bangalore Polytechnic College", branchName: "Information Technology", minRank: 601, maxRank: 1200, category: "GEN" },
+            { id: 7, collegeName: "Chennai Institute of Technology", branchName: "Automobile Engineering", minRank: 1, maxRank: 800, category: "GEN" },
+            { id: 8, collegeName: "Chennai Institute of Technology", branchName: "Chemical Engineering", minRank: 801, maxRank: 1500, category: "GEN" },
+            
+            // OBC Category
+            { id: 9, collegeName: "Delhi Polytechnic Institute", branchName: "Computer Engineering", minRank: 1, maxRank: 800, category: "OBC" },
+            { id: 10, collegeName: "Delhi Polytechnic Institute", branchName: "Mechanical Engineering", minRank: 801, maxRank: 1500, category: "OBC" },
+            { id: 11, collegeName: "Mumbai Technical Institute", branchName: "Electrical Engineering", minRank: 1, maxRank: 700, category: "OBC" },
+            { id: 12, collegeName: "Mumbai Technical Institute", branchName: "Civil Engineering", minRank: 701, maxRank: 1400, category: "OBC" },
+            { id: 13, collegeName: "Kolkata Polytechnic College", branchName: "Computer Engineering", minRank: 1, maxRank: 600, category: "OBC" },
+            { id: 14, collegeName: "Kolkata Polytechnic College", branchName: "Electronics Engineering", minRank: 601, maxRank: 1300, category: "OBC" },
+            
+            // SC Category
+            { id: 15, collegeName: "Delhi Polytechnic Institute", branchName: "Computer Engineering", minRank: 1, maxRank: 1200, category: "SC" },
+            { id: 16, collegeName: "Delhi Polytechnic Institute", branchName: "Civil Engineering", minRank: 1201, maxRank: 2500, category: "SC" },
+            { id: 17, collegeName: "Hyderabad Technical College", branchName: "Electrical Engineering", minRank: 1, maxRank: 1000, category: "SC" },
+            { id: 18, collegeName: "Hyderabad Technical College", branchName: "Mechanical Engineering", minRank: 1001, maxRank: 2200, category: "SC" },
+            { id: 19, collegeName: "Pune Institute of Polytechnic", branchName: "Information Technology", minRank: 1, maxRank: 900, category: "SC" },
+            { id: 20, collegeName: "Pune Institute of Polytechnic", branchName: "Automobile Engineering", minRank: 901, maxRank: 2000, category: "SC" },
+            
+            // ST Category
+            { id: 21, collegeName: "Delhi Polytechnic Institute", branchName: "Computer Engineering", minRank: 1, maxRank: 1500, category: "ST" },
+            { id: 22, collegeName: "Delhi Polytechnic Institute", branchName: "Mechanical Engineering", minRank: 1501, maxRank: 3000, category: "ST" },
+            { id: 23, collegeName: "Ahmedabad Polytechnic College", branchName: "Civil Engineering", minRank: 1, maxRank: 1200, category: "ST" },
+            { id: 24, collegeName: "Ahmedabad Polytechnic College", branchName: "Electronics Engineering", minRank: 1201, maxRank: 2800, category: "ST" },
+            { id: 25, collegeName: "Jaipur Technical Institute", branchName: "Information Technology", minRank: 1, maxRank: 1100, category: "ST" },
+            { id: 26, collegeName: "Jaipur Technical Institute", branchName: "Chemical Engineering", minRank: 1101, maxRank: 2600, category: "ST" }
+        ];
+
+        // DOM Elements
+        const collegeFinderForm = document.getElementById('collegeFinderForm');
+        const rankInput = document.getElementById('rank');
+        const categorySelect = document.getElementById('category');
+        const findCollegesBtn = document.getElementById('findCollegesBtn');
+        const resultsContainer = document.getElementById('resultsContainer');
+        const noResultsMessage = document.getElementById('noResultsMessage');
+        const loadingElement = document.getElementById('loading');
+        const resultsSection = document.getElementById('resultsSection');
+
+        // Form submission handler
+        collegeFinderForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            // Get form values
+            const rank = parseInt(rankInput.value);
+            const category = categorySelect.value;
+            
+            // Validate inputs
+            if (!rank || rank <= 0) {
+                alert("Please enter a valid rank (positive number).");
+                rankInput.focus();
+                return;
+            }
+            
+            if (!category) {
+                alert("Please select your category.");
+                categorySelect.focus();
+                return;
+            }
+            
+            // Show loading animation
+            showLoading();
+            
+            // Simulate API call delay
+            setTimeout(() => {
+                // Find colleges based on rank and category
+                const results = findColleges(rank, category);
+                
+                // Hide loading animation
+                hideLoading();
+                
+                // Display results
+                displayResults(results);
+                
+                // Smooth scroll to results
+                resultsSection.scrollIntoView({ behavior: 'smooth' });
+            }, 800);
+        });
+
+        // Function to find colleges based on rank and category
+        function findColleges(rank, category) {
+            // Filter colleges based on category and rank range
+            return collegeData.filter(college => {
+                return college.category === category && 
+                       rank >= college.minRank && 
+                       rank <= college.maxRank;
+            })
+            .sort((a, b) => a.minRank - b.minRank) // Sort by minimum rank (better colleges first)
+            .slice(0, 5); // Return top 5 results
+        }
+
+        // Function to display results
+        function displayResults(results) {
+            // Clear previous results
+            resultsContainer.innerHTML = '';
+            
+            // If no results found
+            if (results.length === 0) {
+                noResultsMessage.style.display = 'block';
+                resultsContainer.appendChild(noResultsMessage);
+                
+                // Update no results message
+                noResultsMessage.innerHTML = `
+                    <div class="no-results-icon">😕</div>
+                    <h3>No Colleges Found</h3>
+                    <p>No colleges found for your rank and category. Try with a different rank or check other categories.</p>
+                `;
+                return;
+            }
+            
+            // Hide no results message
+            noResultsMessage.style.display = 'none';
+            
+            // Display each result as a card
+            results.forEach(college => {
+                const card = createCollegeCard(college);
+                resultsContainer.appendChild(card);
+            });
+        }
+
+        // Function to create a college card element
+        function createCollegeCard(college) {
+            const card = document.createElement('div');
+            card.className = 'result-card';
+            
+            // Determine category badge class
+            let categoryClass = '';
+            switch(college.category) {
+                case 'GEN': categoryClass = 'category-gen'; break;
+                case 'OBC': categoryClass = 'category-obc'; break;
+                case 'SC': categoryClass = 'category-sc'; break;
+                case 'ST': categoryClass = 'category-st'; break;
+            }
+            
+            // Get category full name
+            let categoryFullName = '';
+            switch(college.category) {
+                case 'GEN': categoryFullName = 'General'; break;
+                case 'OBC': categoryFullName = 'Other Backward Class'; break;
+                case 'SC': categoryFullName = 'Scheduled Caste'; break;
+                case 'ST': categoryFullName = 'Scheduled Tribe'; break;
+            }
+            
+            card.innerHTML = `
+                <div class="card-header">
+                    <h3 class="college-name">${college.collegeName}</h3>
+                    <p class="branch-name">${college.branchName}</p>
+                </div>
+                <div class="card-details">
+                    <div class="detail-item">
+                        <span class="detail-label">Rank Range:</span>
+                        <span class="detail-value">${college.minRank} - ${college.maxRank}</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Seats Available:</span>
+                        <span class="detail-value">${Math.floor(Math.random() * 20) + 10}</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Location:</span>
+                        <span class="detail-value">${getCollegeLocation(college.collegeName)}</span>
+                    </div>
+                    <span class="category-badge ${categoryClass}">${categoryFullName}</span>
+                </div>
+            `;
+            
+            return card;
+        }
+
+        // Helper function to get college location based on name
+        function getCollegeLocation(collegeName) {
+            if (collegeName.includes('Delhi')) return 'Delhi';
+            if (collegeName.includes('Mumbai')) return 'Mumbai';
+            if (collegeName.includes('Bangalore')) return 'Bangalore';
+            if (collegeName.includes('Chennai')) return 'Chennai';
+            if (collegeName.includes('Kolkata')) return 'Kolkata';
+            if (collegeName.includes('Hyderabad')) return 'Hyderabad';
+            if (collegeName.includes('Pune')) return 'Pune';
+            if (collegeName.includes('Ahmedabad')) return 'Ahmedabad';
+            if (collegeName.includes('Jaipur')) return 'Jaipur';
+            return 'Multiple Locations';
+        }
+
+        // Function to show loading animation
+        function showLoading() {
+            loadingElement.style.display = 'block';
+            findCollegesBtn.disabled = true;
+            findCollegesBtn.textContent = 'Searching...';
+        }
+
+        // Function to hide loading animation
+        function hideLoading() {
+            loadingElement.style.display = 'none';
+            findCollegesBtn.disabled = false;
+            findCollegesBtn.textContent = 'Find Colleges';
+        }
+
+        // Initialize the page with some sample data
+        function initializePage() {
+            // Set default values for demonstration
+            rankInput.value = 750;
+            categorySelect.value = 'GEN';
+            
+            // Find and display initial results
+            const initialResults = findColleges(750, 'GEN');
+            displayResults(initialResults);
+        }
+
+        // Initialize the page when loaded
+        document.addEventListener('DOMContentLoaded', initializePage);
+    </script>
+</body>
+</html>
